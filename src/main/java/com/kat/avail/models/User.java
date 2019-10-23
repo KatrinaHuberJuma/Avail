@@ -1,12 +1,15 @@
 package com.kat.avail.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -33,14 +36,21 @@ public class User {
 	    private Date createdAt;
 	    private Date updatedAt;
 	    
+	    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	    private List<Availability> availablities;
+	    
+	    
 	    public User() {
 	    }
 
-	    
+
+
+
+
 		public User(Long id, @Email(message = "Email must be valid") String email,
 				@Size(min = 2, message = "name must be at least 2 characters") String name,
 				@Size(min = 5, message = "password must be at least 5 characters") String password,
-				String passwordConfirmation, Date createdAt, Date updatedAt) {
+				String passwordConfirmation, Date createdAt, Date updatedAt, List<Availability> availablities) {
 			this.id = id;
 			this.email = email;
 			this.name = name;
@@ -48,7 +58,9 @@ public class User {
 			this.passwordConfirmation = passwordConfirmation;
 			this.createdAt = createdAt;
 			this.updatedAt = updatedAt;
+			this.availablities = availablities;
 		}
+
 
 
 
@@ -85,6 +97,16 @@ public class User {
 			this.email = email;
 		}
 
+
+
+		public List<Availability> getAvailablities() {
+			return availablities;
+		}
+
+
+		public void setAvailablities(List<Availability> availablities) {
+			this.availablities = availablities;
+		}
 
 
 		public String getPassword() {
@@ -144,4 +166,8 @@ public class User {
 	    protected void onUpdate(){
 	        this.updatedAt = new Date();
 	    }
+	   
 }
+
+
+
