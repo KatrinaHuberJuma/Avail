@@ -39,7 +39,7 @@
         </c:forEach>
     </tbody>
 </table>
-<a href="/books/new">New Book</a>
+<a href="/first">home</a>
 		
 		
 		

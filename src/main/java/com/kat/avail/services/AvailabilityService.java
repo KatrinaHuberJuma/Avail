@@ -18,6 +18,11 @@ public class AvailabilityService {
 	public List<Availability> allWeek(){
 		return availRepo.findAll();
 	}
-	
+	public void upDateRating(Availability availability, int rating){
+		availability.setRating(rating);
+	}
+//	public Availability userAvailabilityByDay(Long userid, String day) {
+//		return 
+//	}
 }
 
