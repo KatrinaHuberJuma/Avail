@@ -24,5 +24,10 @@ public class AvailabilityService {
 //	public Availability userAvailabilityByDay(Long userid, String day) {
 //		return 
 //	}
+
+	public Availability updateAvailability(Availability availability) {
+		return availRepo.save(availability);
+		
+	}
 }
 
