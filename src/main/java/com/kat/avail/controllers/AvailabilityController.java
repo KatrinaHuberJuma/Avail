@@ -26,7 +26,7 @@ public class AvailabilityController {
 			this.availabilityService = availabilityService;
 		}
 		
-		 @RequestMapping("/first")
+		 @RequestMapping("/everybody")
 		    public String first(Model model, HttpSession session) {
 			 List<Availability> allA= availabilityService.allWeek();
 			 model.addAttribute("availabilities", allA);
@@ -52,7 +52,7 @@ public class AvailabilityController {
 				
 			 System.out.println(result.toString());
 			 if (result.hasErrors()) {
-		            return "redirect:/first";
+		            return "redirect:/everybody";
 		        } else {
 		        	availabilityService.updateAvailability(availability);
 		        	return  "redirect:/employee-view";

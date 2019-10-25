@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 		 	@Id
 		    @GeneratedValue(strategy=GenerationType.IDENTITY)
 		    private Long id;
-		 	@Column(unique=true)
+//		 	@Column(unique=false)
 		    private String day;
 		 	private int rating;
 		 	
