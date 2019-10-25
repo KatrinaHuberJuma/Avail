@@ -45,7 +45,7 @@ public class UserController {
         }
         User u = userService.registerUser(user);
         session.setAttribute("userId", u.getId());
-        return "redirect:/home";
+        return "redirect:/employee-view";
     }
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -55,7 +55,7 @@ public class UserController {
     	if (userService.authenticateUser(email, password)) {
     		User user = userService.findByEmail(email);
     		session.setAttribute("userId", user.getId());
-    		return "redirect:/home";
+    		return "redirect:/employee-view";
     	} else {
     		model.addAttribute("error", "Invalid credentials");
     		return "loginPage.jsp";

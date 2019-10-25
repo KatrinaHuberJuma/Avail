@@ -6,15 +6,20 @@ import org.springframework.stereotype.Service;
 
 import com.kat.avail.models.Availability;
 import com.kat.avail.repositories.AvailabilityRepository;
+import com.kat.avail.repositories.DayRepository;
 
 @Service
 public class AvailabilityService {
 	private final AvailabilityRepository availRepo;
-
-	public AvailabilityService(AvailabilityRepository availRepo) {
-		this.availRepo = availRepo;
-	}
+	private final DayRepository dayRepo;
 	
+	
+	
+	
+	public AvailabilityService(AvailabilityRepository availRepo, DayRepository dayRepo) {
+		this.availRepo = availRepo;
+		this.dayRepo = dayRepo;
+	}
 	public List<Availability> allWeek(){
 		return availRepo.findAll();
 	}
@@ -28,6 +33,10 @@ public class AvailabilityService {
 	public Availability updateAvailability(Availability availability) {
 		return availRepo.save(availability);
 		
+	}
+	
+	public List<Object[]> allDaysAndRatings(){
+		return dayRepo.userRatingsByDay();
 	}
 }
 

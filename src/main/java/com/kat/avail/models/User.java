@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -36,8 +39,11 @@ public class User {
 	    private Date createdAt;
 	    private Date updatedAt;
 	    
+	    
+	    
 	    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-	    private List<Availability> availablities;
+	    private List<Availability> availabilities;
+	    
 	    
 	    
 	    public User() {
@@ -50,7 +56,7 @@ public class User {
 		public User(Long id, @Email(message = "Email must be valid") String email,
 				@Size(min = 2, message = "name must be at least 2 characters") String name,
 				@Size(min = 5, message = "password must be at least 5 characters") String password,
-				String passwordConfirmation, Date createdAt, Date updatedAt, List<Availability> availablities) {
+				String passwordConfirmation, Date createdAt, Date updatedAt, List<Availability> availabilities) {
 			this.id = id;
 			this.email = email;
 			this.name = name;
@@ -58,7 +64,7 @@ public class User {
 			this.passwordConfirmation = passwordConfirmation;
 			this.createdAt = createdAt;
 			this.updatedAt = updatedAt;
-			this.availablities = availablities;
+			this.availabilities = availabilities;
 		}
 
 
@@ -99,14 +105,23 @@ public class User {
 
 
 
-		public List<Availability> getAvailablities() {
-			return availablities;
+
+
+
+		public List<Availability> getAvailabilities() {
+			return availabilities;
 		}
 
 
-		public void setAvailablities(List<Availability> availablities) {
-			this.availablities = availablities;
+
+
+
+		public void setAvailabilities(List<Availability> availabilities) {
+			this.availabilities = availabilities;
 		}
+
+
+
 
 
 		public String getPassword() {

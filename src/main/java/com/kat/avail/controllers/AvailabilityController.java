@@ -28,8 +28,8 @@ public class AvailabilityController {
 		
 		 @RequestMapping("/everybody")
 		    public String first(Model model, HttpSession session) {
-			 List<Availability> allA= availabilityService.allWeek();
-			 model.addAttribute("availabilities", allA);
+			 List<Object[]> days = availabilityService.allDaysAndRatings();
+			 model.addAttribute("days", days);
 		        return "firstpage.jsp";
 		    }
 		 
@@ -41,6 +41,7 @@ public class AvailabilityController {
 			 
 			 User user= userService.findUserById(id);
 			 model.addAttribute("user", user);
+			
 		        return "EmployeeView.jsp";
 		    }
 		 
@@ -52,7 +53,7 @@ public class AvailabilityController {
 				
 			 System.out.println(result.toString());
 			 if (result.hasErrors()) {
-		            return "redirect:/everybody";
+		            return "redirect:/employee-view";
 		        } else {
 		        	availabilityService.updateAvailability(availability);
 		        	return  "redirect:/employee-view";

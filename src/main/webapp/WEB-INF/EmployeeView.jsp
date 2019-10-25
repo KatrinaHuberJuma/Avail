@@ -26,11 +26,11 @@
 
 
 
-        <c:forEach items="${user.availablities}" var="a">
+        <c:forEach items="${user.availabilities}" var="a">
         <div class="col">
                	<form:form action="/availability-edit/${a.id}" method="post" modelAttribute="availability">
-                	<h1><c:out value="${a.day}"/></h1>
-                	<form:hidden path="day" value="${a.day }"/>
+                	<h1><c:out value="${a.day.day}"/></h1>
+                	<form:hidden path="day" value="${a.day.id }"/>
                 	<form:hidden path="user" value="${a.user.id}"/>
 					<input type="hidden" name="_method" value="put">
 					<div class="form-group">
@@ -40,8 +40,7 @@
 				        <form:input path="rating" value="${a.rating}"/>
 				    </p>
 				    </div>
-				 
-				    <%-- <form:hidden path="planner" value="${user.id}"/> --%>
+
 				    <input type="submit" class="btn btn-primary" value="Edit"/>
 				</form:form>
 				</div>

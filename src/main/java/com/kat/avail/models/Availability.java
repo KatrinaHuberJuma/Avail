@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 		    @GeneratedValue(strategy=GenerationType.IDENTITY)
 		    private Long id;
 //		 	@Column(unique=false)
-		    private String day;
+		   
 		 	private int rating;
 		 	
 		 	@ManyToOne(fetch = FetchType.LAZY)
@@ -35,15 +35,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 		    private Date updatedAt;
 		    
 		    
+		    @ManyToOne(fetch = FetchType.LAZY)
+		    @JoinColumn(name="day_id")
+		    private Day day;
+		        
 		    
-		    
-			public Availability(Long id, String day, int rating, User user, Date createdAt, Date updatedAt) {
+			
+			public Availability(Long id, int rating, User user, Date createdAt, Date updatedAt, Day day) {
 				this.id = id;
-				this.day = day;
 				this.rating = rating;
 				this.user = user;
 				this.createdAt = createdAt;
 				this.updatedAt = updatedAt;
+				this.day = day;
 			}
 			public Availability() {
 			}
@@ -53,10 +57,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 			public void setId(Long id) {
 				this.id = id;
 			}
-			public String getDay() {
+			
+			public Day getDay() {
 				return day;
 			}
-			public void setDay(String day) {
+			public void setDay(Day day) {
 				this.day = day;
 			}
 			public int getRating() {

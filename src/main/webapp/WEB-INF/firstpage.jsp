@@ -29,11 +29,11 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${availabilities}" var="a">
+        <c:forEach items="${days}" var="d">
         <tr>
-            <td><c:out value="${a.day}"/></td>
-            <td><c:out value="${a.rating}"/></td>
-            <td><c:out value="${a.user.name}"/></td>
+            <td><c:out value="${d[0]}"/></td>
+            <td><c:out value="${d[1]}"/></td>
+            <td><c:out value="${d[2]}"/></td>
             <%-- <td><a href='/Availability/<c:out value="${book.id}"/>'>See this book</a></td> --%>
         </tr>
         </c:forEach>
